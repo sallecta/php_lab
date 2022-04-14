@@ -1,2 +1,2 @@
 # php_lab
-php coding examples
+php laboratory
