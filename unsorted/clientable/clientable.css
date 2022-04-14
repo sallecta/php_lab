@@ -1,0 +1,132 @@
+/*
+Based on 
+Creating beautiful HTML tables with CSS by
+Dom (dcode)
+https://dev.to/dcodeyt
+https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l
+*/
+
+:root {
+  --clientable_color: #009879;
+  --clientable_color_lite:  #fff;
+  --clientable_color_inv:  #fff;
+  --clientable_color_inv_spot:  #d1fdf5;
+  --clientable_color_semidark:  #0c866d;
+  --clientable_color_inv_dark:  #295950;
+  --clientable_color_lite: #c4c4c4;
+  --clientable_color_dark: ##000;
+  --clientable_color_lite1_3: #129d81;
+  --clientable_color_lite2_3: #9accc2;
+  --clientable_color_lite3_3: #fff;
+  --clientable_color_dark1_3: #1c6a5c;
+}
+
+.clientable_container
+{
+	display:block;position:relative;
+	margin: 0px; padding: 0px;
+	font-size: 0.8em;
+	font-family: sans-serif;
+	min-height: 200px;
+	width: 1px;
+	min-width: 400px;
+	background:transparent;left:50ox;
+}
+
+.clientable_container table
+{
+	border-collapse: collapse;
+	margin: 0; padding:0;
+	font-size: 0.8em;
+	font-family: sans-serif;
+	min-width: inherit;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.clientable_container .menu
+{
+	displaY:block;
+	margin: 10; padding: 10px;
+	font-size: 0px;
+	min-width: inherit;
+}
+
+.clientable_container thead tr
+{
+	background-color: var(--clientable_color);
+	color:var(--clientable_color_inv);
+	text-align: left;
+	font-size: 0.9em;
+}
+
+.clientable_container th,
+.clientable_container td
+{
+	padding: 12px 15px;
+}
+
+.clientable_container th
+{
+	border-right: 1px solid var(--clientable_color_semidark);
+}
+.clientable_container td
+{
+	border-right: 1px solid var(--clientable_color_lite);
+}
+
+.clientable_container th:last-child,
+.clientable_container td:last-child
+{
+	padding: 12px 15px;
+	border-right: none;
+}
+
+.clientable_container tbody tr
+{
+	border-bottom: 1px solid var(--clientable_color_lite);
+}
+
+.clientable_container tbody tr:nth-of-type(even)
+{
+	background-color: var(--clientable_color_inv_spot);
+}
+
+.clientable_container tbody tr:last-of-type
+{
+	border-bottom: 2px solid var(--clientable_color);
+}
+
+.clientable_container tbody tr.active-row
+{
+	font-weight: bold;
+	color: #009879;
+}
+
+.clientable_container .menu
+{
+	background:var(--clientable_color_semidark);
+	margin:0; padding:5px 0px 6px 0px;
+}
+
+.clientable_container .menu button
+{
+	background:var(--clientable_color_dark1_3);
+	margin:0px 0px 0px 5px; padding:2px 4px 2px 4px;
+	border:none;border-radius: 3px;
+	font-weight: normal;
+	font-size: 12px;
+	color:var(--clientable_color_lite1_3);
+}
+
+.clientable_container .menu button:hover
+{
+	color:var(--clientable_color_lite2_3);
+	background:var(--clientable_color_lite1_3);
+}
+
+.clientable_container .menu button:active
+{
+	background:var(--clientable_color_lite2_3);
+	color:var(--clientable_color_lite3_3);
+}
+

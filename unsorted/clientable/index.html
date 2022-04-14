@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Clientable</title>
+		<link rel="stylesheet" href="clientable.css" type="text/css">
+		<style> table.basic-table td{ height: 2em; background-color: white;} </style>
+	</head>
+	<body>
+	<div class="clientable_container">
+		<table id="sample-table" >
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Custom Color Example</th>
+					<th>Secret Value</th>
+					<th>Number Example</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<p class="menu">
+			<button id="sample-table-add-button" class="btn btn-primary">Add New Row</button>
+			<button id="sample-table-dump-button" class="btn btn-danger">Dump Data to Console</button>
+		</p>
+	</div> <! -- end  container-->
+	
+	<script src="external/jquery-3.6.0.js"></script>
+	<script src="clientable.js"></script>
+	<script>
+		let lightOrDark = function(color)
+		{
+			// Check the format of the color, HEX or RGB?
+			if (color.match(/^rgb/)) 
+			{
+			// If HEX --> store the red, green, blue values in separate variables
+			color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
+			r = color[1];
+			g = color[2];
+			b = color[3];
+			}
+			else
+			{
+			// If RGB --> Convert it to HEX: http://gist.github.com/983661
+			color = +("0x" + color.slice(1).replace( color.length < 5 && /./g, '$&$&' ) );
+			r = color >> 16;
+			g = color >> 8 & 255;
+			b = color & 255;
+			}
+			// HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
+			hsp = Math.sqrt(
+			0.299 * (r * r) +
+			0.587 * (g * g) +
+			0.114 * (b * b)
+			);
+			// Using the HSP value, determine whether the color is light or dark
+			if (hsp > 127.5) 
+			{
+			return 'light';
+			}
+			else
+			{
+			return 'dark';
+			}
+		} // end lightOrDark
+		
+		// Setting the style of a table cell based on color
+		let setCellColor = function (color, cell)
+		{
+			// Set the background color
+			$(cell).css('background-color', color);
+			// Set the text color
+			let lightOrDarkVal = lightOrDark(color);
+			if (lightOrDarkVal == 'light')
+			{
+			$(cell).css('color', 'black');
+			}
+			else
+			{
+			$(cell).css('color', 'white');
+			}
+		}; // end setCellColor
+		
+		let tableConfig = 
+		{
+			columns: 
+			[
+				{ // unique column
+					index: 0,
+					name: 'id',
+					removeRowIfCleared: true,
+					isValid: (newVal, data) =>
+					{
+						// Ensure the id number is unique
+						let allIds = data.map(p => p.id);
+						return !allIds.includes(newVal);
+					} // end isValid
+				}, // end unique column
+				
+				{ // color picker column
+					index: 1,
+					name: 'color',
+					classes: ['text-center'],
+					isValid: (val) =>
+					{
+						// Validate if hex color code
+						return /^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/i.test(val);
+					},
+					afterAdd: function (addedColor, cell)
+					{
+						setCellColor(addedColor, cell);
+						
+						let newColorPicker = $( `<input type="color" value="${addedColor}">` );
+						newColorPicker.hide();
+						cell.parent().append(newColorPicker);
+						cell.on('click', function () { newColorPicker.click(); } );
+						newColorPicker.on
+						(
+							'change', function (e) 
+							{
+							let newColorFromInput = e.target.value;
+							setCellColor(newColorFromInput, cell);
+							cell.text(newColorFromInput);
+							}
+						); // end newColorPicker.on
+					}, // addedColor
+					afterChange: function (newColor, cell)
+					{
+						// Do something with the new color value
+					},
+					convertOut: (outgoingVal) =>
+					{
+						// Convert to int when getting the data out
+						return outgoingVal.toUpperCase();
+					},
+				}, // end color picker column
+				
+				// hidden column
+				{
+					index: 2,
+					name: 'secretValue',
+					isHidden: true
+				},
+				// int number column
+				{
+					index: 3,
+					name: 'number',
+					classes: ['text-end'],
+					isValid: (val) => {
+					val = parseInt(val);
+					return !isNaN(val) && Number.isInteger(val);
+					},
+					convertOut: (outgoingVal) => { return Number(outgoingVal); },
+				}
+			], // end columns
+			
+			actions:
+			[
+				{
+					label: '<button>Delete</button>',
+					action: (e, row) => { row.remove(); }
+				},
+			] // end actions
+		}; // end tableConfig
+		
+		let clientable_1 = $('#sample-table').clientable_fn(tableConfig);
+		
+		$('#sample-table-add-button').click
+		(
+			(e)=>
+			{
+				let currentData = clientable_1.getData();
+				let maxId = Math.max(...currentData.map(p => parseInt(p.id)));
+				if (isNaN(maxId) || maxId === -Infinity) maxId = 0;
+				clientable_1.addRow({ id: maxId + 1, color: '#FFFFFF', number: 0, secretValue: 'secretNewwwww' });
+			}
+		); // end ('#sample-table-add-button').click
+		
+		$('#sample-table-dump-button').click
+		(
+			(e)=>
+			{
+				console.log(clientable_1.getData());
+			}
+		); // end ('#sample-table-dump-button').click
+		
+		// Set table data
+		clientable_1.setData
+		(
+			[
+				{
+					id: 0,
+					color: '#eafbb0',
+					number: 321,
+					secretValue: 'secret0'
+				},
+				{
+					id: 1,
+					color: '#eac8de',
+					number: 123,
+					secretValue: 'secret1'
+				},
+				{
+					id: 2,
+					color: '#c0afff',
+					number: 755,
+					secretValue: 'secret2'
+				}
+			]
+		); // end clientable_1.setData
+	</script>
+	</body>
+</html>

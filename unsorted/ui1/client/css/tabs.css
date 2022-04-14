@@ -1,0 +1,47 @@
+ /* based on https://www.w3schools.com/howto/howto_js_tabs.asp */
+ /* Style the tab */
+:root
+{
+  --ui1-tablink-active-bcolor: #ccc;
+  --ui1-text-color:black;
+} 
+.tab_links {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab_links .tablink {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  text-decoration:none;color:var(--ui1-text-color)
+}
+
+/* Change background color of buttons on hover */
+.tab_links .tablink:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab_links .tablink.active {
+  background-color: var(--ui1-tablink-active-bcolor);
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.tabcontent_wrapper div:first-child
+{
+	display: block;
+}
