@@ -4,5 +4,6 @@ return array
 (
 
 'version' => '0.0.1',
+'actions_dir' => Myapp_dir. '/myapp_act/actions',
 
 );

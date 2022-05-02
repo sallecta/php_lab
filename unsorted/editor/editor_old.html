@@ -1,0 +1,121 @@
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<title>editor</title>
+		<meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="assests/codemirror-5.65.3/lib/codemirror.js"></script>
+		<link rel="stylesheet" href="assests/codemirror-5.65.3/lib/codemirror.css">
+		<script src="assests/codemirror-5.65.3/mode/javascript/javascript.js"></script>
+		
+		<script	src="assests/0thisapp/0main.js"></script>
+		<link 	href="assests/0thisapp/w3schools30.css" rel="stylesheet">
+		<link href="assests/0thisapp/0main.css" rel="stylesheet">
+		
+		<link rel="stylesheet" href="assests/Fork-Awesome-1.2.0/css/fork-awesome.css">
+		<script>
+			if (window.addEventListener) {              
+			    window.addEventListener("resize", browserResize);
+			} else if (window.attachEvent) {                 
+			    window.attachEvent("onresize", browserResize);
+			}
+			var xbeforeResize = window.innerWidth;
+			
+			
+			var fileID = "";
+		</script>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div class="trytopnav">
+			<div class="w3-bar" style="overflow:auto">
+				<a id="tryhome" href="https://www.w3schools.com" target="_blank" title="w3schools.com Home" class="w3-button w3-bar-item topnav-icons fa fa-home" style="margin-top:-2px;"></a>
+				<a  onclick="openMenu()" id="menuButton" title="Open Menu" class="w3-dropdown-click w3-button w3-bar-item topnav-icons fa fa-menu" style="margin-top:-2px;"></a>
+				<a  onclick="spaceIt.showDialog()" title="Save code" class="w3-button w3-bar-item topnav-icons fa fa-save" style="margin-top:-2px;"></a>
+				<a  onclick="restack(currentStack)" title="Change Orientation" class="topnav-icons icon_mobile " style="margin-top:-2px;"></a>
+				<a  onclick="retheme()" title="Change Theme" class="w3-button w3-bar-item topnav-icons fa fa-adjust" style="margin-top:-2px;"></a>
+				<button id="runbtn" class="w3-button w3-bar-item w3-hover-white w3-hover-text-green" onclick="submitTryit(1);ga('send', 'event', 'runCode', 'click');uic_r_p();">Run &#10095;</button>
+				<span class="w3-right w3-hide-small" style="padding:8px 16px 8px 0;display:block;float:right;font-size:16px;margin-top:4px"><span id="framesize"></span></span>
+			</div>
+		</div>
+		<div id="shield"></div>
+		<a href="javascript:void(0)" id="dragbar"></a>
+		<div id="container">
+			<div id="navbarDropMenu" class="w3-dropdown-content w3-bar-block w3-border" style="z-index:5">
+				<span onclick="openMenu()" class="w3-button w3-display-topright w3-transparent ws-hover-black" title="Close Menu" style="font-weight:bold;padding-top:10px;padding-bottom:11px;">&times;</span>
+				<div class="w3-bar-block">
+					<a class="w3-bar-item w3-button" href='javascript:void(0);' title="Change Orientaton" onclick="openMenu();restack(currentStack)"><i class="fa fa-mobile" style="font-size:26px;margin-left:-4px;margin-right:8px"></i><span style="position:relative;top:-4px;left:2px;">Change Orientation</span></a>
+					<a class="w3-bar-item w3-button" "" title="Save" onclick="openMenu();spaceIt.showDialog()"><i class="fa fa-save" style="font-size:26px;margin-right:10px;"></i><span style="position:relative;top:-4px;left:2px;">Save Code</span></a>
+					<a class="w3-bar-item w3-button" href='javascript:void(0);' title="Change Theme" onclick="openMenu();retheme()"><i class="fa fa-adjust" style="font-size:26px;margin-right:8px"></i><span style="position:relative;top:-4px;left:2px;">Change Theme, Dark/Light</span></a>
+				</div>
+			</div>
+			<div id="menuOverlay" class="w3-overlay w3-transparent" style="cursor:pointer;z-index:4"></div>
+			<div id="textareacontainer">
+				<div id="textarea">
+					<div id="textareawrapper">
+						<textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
+			<!DOCTYPE html>
+<html>
+
+<body>
+The content of the body element is displayed in your browser.
+</body>
+
+</html>
+</textarea>
+						<form id="codeForm" autocomplete="off" style="margin:0px;display:none;">
+							<input type="hidden" name="code" id="code" />
+						</form>
+					</div>
+				</div>
+			</div>
+			<div id="iframecontainer">
+				<div id="iframe">
+					<div id="iframewrapper"></div>
+				</div>
+			</div>
+		</div>
+		<div id='tryitLeaderboard'>
+			<div id="adngin-try_it_leaderboard-0"></div>
+		</div>
+		<script>
+			submitTryit();
+			
+			
+			var currentStack=true;
+			if ((window.screen.availWidth <= 768 && window.innerHeight > window.innerWidth) || "" == " horizontal") {restack(true);}
+			
+			var dragging = false;
+			var stack;
+			
+			if (window.addEventListener) {              
+			  document.getElementById("dragbar").addEventListener("mousedown", function(e) {dragstart(e);});
+			  document.getElementById("dragbar").addEventListener("touchstart", function(e) {dragstart(e);});
+			  window.addEventListener("mousemove", function(e) {dragmove(e);});
+			  window.addEventListener("touchmove", function(e) {dragmove(e);});
+			  window.addEventListener("mouseup", dragend);
+			  window.addEventListener("touchend", dragend);
+			  window.addEventListener("load", fixDragBtn);
+			  window.addEventListener("load", showFrameSize);
+			}
+			
+			
+			setThemeMode();
+			
+			colorcoding();
+			
+			
+			window.onclick = function(event) {
+			    if (event.target == document.getElementById("menuOverlay")) {
+			        openMenu();
+			    }
+			}
+				
+		</script>
+	</body>
+</html>
+

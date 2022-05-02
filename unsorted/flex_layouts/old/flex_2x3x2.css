@@ -1,0 +1,65 @@
+/*
+ 
+ https://tobiasahlin.com/blog/common-flexbox-patterns/#stretch-middle-fixed-spacing
+ 
+ */
+  /* settings */
+ .thisapp_flex_container
+ {
+	--thisapp_gap_row:		10px;
+	--thisapp_gap_column:	10px;
+	--thisapp_width:	100%;
+}
+
+ /* flex layout */
+.thisapp_flex_single_line
+ {
+	flex-wrap:nowrap;
+	width:var(--thisapp_width);
+ }
+.thisapp_flex_multi_line
+ {
+	flex-wrap:wrap;
+	width:var(--thisapp_width);
+ }
+
+.thisapp_flex_container
+{
+  display: flex;
+}
+
+
+.thisapp_item:nth-child(1n) { 
+  flex-grow: 1; /* Set the middle element to grow and stretch */
+}
+
+.thisapp_item:nth-child(3n) { 
+  flex-grow: 1; /* Set the middle element to grow and stretch */
+}
+
+.thisapp_item + .thisapp_item { 
+  margin-left: 2%; 
+}
+
+
+/* style */
+
+.thisapp_item {
+  height: 100px;
+  width: 100px; /* A fixed width as the default */
+}
+
+.thisapp_flex_container
+{ 
+	row-gap: var(--thisapp_gap_row);
+	column-gap: var(--thisapp_gap_column);
+}
+.thisapp_item
+{
+	border-radius: 5px;
+	background-color: #A2CBFA;
+	border: 1px solid #4390E1;
+	box-sizing: border-box;
+	box-shadow: 0 2px 2px rgba(0,90,250,0.05), 0 4px 4px rgba(0,90,250,0.05), 0 8px 8px rgba(0,90,250,0.05), 0 16px 16px rgba(0,90,250,0.05); 
+	content:"thisapp_item";
+}

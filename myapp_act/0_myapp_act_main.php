@@ -7,3 +7,7 @@ $trp = function ($arg) { Translate_sallecta::tre($arg); };
 global $myapp;
 $myapp = new Myapp_main( array('settings_file'=>Myapp_dir.'/myapp_settings.eval.php',) );
 
+if ( count($_SERVER['argv']) == 1 )
+{
+	$myapp->actions_get();
+}

@@ -1,0 +1,138 @@
+/* thisapp */
+
+
+/*
+ 
+based on
+https://tobiasahlin.com/blog/common-flexbox-patterns/#stretch-middle-fixed-spacing
+https://www.w3.org/TR/css-flexbox-1/#order-accessibility
+ 
+*/
+
+/* thisapp factory */
+
+/* thisapp factory settings */
+
+div.thisapp
+ {
+	/* dimensions */
+	--thisapp_gap:								10px; /*	var(--thisapp_gap)								*/ 
+	--thisapp_gap_row:							var(--thisapp_gap);
+	--thisapp_gap_column:						var(--thisapp_gap);
+	--thisapp_width:							100%; /*	var(----thisapp_width)							*/
+	--thisapp_height_min:						300px; /*	var(--thisapp_height_min)						*/
+	--thisapp_container_height_min:				50px; /*	var(--thisapp_container_height_min)				*/
+	/* colors */
+	--thisapp_color_main:		#373737; 		/*	var(--thisapp_color_main)				*/
+	--thisapp_color_opposite:	#FF8300; 		/*	var(--thisapp_color_opposite)			*/
+	--thisapp_color_shadow:		#0E1B3312; 		/*	var(--thisapp_color_shadow)			*/
+	/* custom */
+	--thisapp_header_height_min:				50px; /*	var(--thisapp_header_height_min)				*/
+	--thisapp_middle_height_min:				300px; /*	var(--thisapp_middle_height_min)				*/
+	--thisapp_middle_left_width:				150px; /*	var(--thisapp_middle_left_width)				*/
+	--thisapp_middle_center_width_min:			300px; /*	var(--thisapp_middle_center_width_min)				*/
+	--thisapp_middle_right_width:				70px; /*	var(--thisapp_middle_right_width)				*/
+	--thisapp_footer_height_min:				100px; /*	var(--thisapp_bottom_height_min)				*/
+}
+
+
+
+/* thisapp factory flex layout */
+
+div.thisapp
+{ 
+	display:	flex; 
+	flex-wrap:	wrap;
+	width:		var(--thisapp_width);
+	min-height:	var(--thisapp_height_min);
+}
+
+div.thisapp > div.container	{ display: flex; }
+
+div.thisapp > div.nowrap	{ flex-wrap:nowrap; } 	/* single line */
+
+div.thisapp > div.wrap		{ flex-wrap:wrap; } 	/* multi_line */
+
+div.thisapp > div.container > div.item
+{ 
+	flex-grow: 1; /* Grow and stretch all items */
+	/* grow and stretch must be disabled to set custom width, use "flex-grow:unset" before setting the width  */
+}
+
+div.thisapp > div.container
+{ 
+	width:100%; 
+}
+
+div.thisapp,
+div.thisapp > div.container
+{ 
+	row-gap: var(--thisapp_gap_row);
+	column-gap: var(--thisapp_gap_column);
+}
+
+
+/* thisapp factory style */
+
+div.thisapp > div.container > div.item
+{
+	border-radius: 5px;
+	background-color: var(--thisapp_color_main);
+	border: 1px solid var(--thisapp_color_opposite);
+	box-sizing: border-box;
+	box-shadow: 0 2px 2px var(--thisapp_color_shadow), 0 4px 4px var(--thisapp_color_shadow), 0 8px 8px var(--thisapp_color_shadow), 0 16px 16px var(--thisapp_color_shadow); 
+}
+
+/* end thisapp factory */
+
+
+
+/* thisapp custom */
+
+div.thisapp,
+div.thisapp > div.container
+div.thisapp > div.container > div.item
+{ 
+	min-height: 0; height: 0;
+}
+
+div.thisapp > div.header
+{ 
+	min-height: var(--thisapp_header_height_min);
+}
+
+div.thisapp > div.middle
+{ 
+	min-height: var(--thisapp_middle_height_min);
+}
+
+div.thisapp > div.middle > div.left
+{ 
+	flex-grow:unset;  /* item's grow and stretch must be disabled to set custom width */
+	width: var(--thisapp_middle_left_width);
+}
+
+div.thisapp > div.middle > div.center
+{ 
+	/* flex-grow:unset;   item's grow and stretch must be disabled to set custom width */
+	min-width: var(--thisapp_middle_center_width_min);
+}
+
+div.thisapp > div.middle > div.right
+{ 
+	flex-grow:unset;  /* item's grow and stretch must be disabled to set custom width */
+	width: var(--thisapp_middle_right_width);
+}
+
+div.thisapp > div.footer
+{ 
+	min-height: var(--thisapp_footer_height_min);
+}
+
+
+/* thisapp custom style */
+
+
+/* end thisapp custom */
+
+/* end thisapp */

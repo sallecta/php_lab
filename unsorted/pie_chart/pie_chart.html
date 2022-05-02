@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>My Website</title>
+		<link rel="stylesheet" href="./style.css">
+		<link rel="icon" href="./favicon.ico" type="image/x-icon">
+	</head>
+
+	<body>
+<!--
+Based on 
+How to Create a Pie Chart Using Only CSS
+by Temani Afif https://www.freecodecamp.org/news/author/temani-afif/
+https://www.freecodecamp.org/news/css-only-pie-chart/
+-->
+<style>
+
+.pie_chart
+{
+	--pie_chart_percent:		80;
+	--pie_chart_size:			150px;
+	--pie_chart_color:			#fd8f02;
+ }
+
+.pie_chart
+{
+	--pie_chart_color_dark:		35%;
+	--pie_chart_border:			calc( var(--pie_chart_size) / 14 );
+	--pie_chart_padding:		calc( var(--pie_chart_border) * 1.9 );
+	--pie_chart_diameter:		calc( var(--pie_chart_size) - var(--pie_chart_border)/100 );
+	--pie_chart_font:			calc( var(--pie_chart_size) / 12) sans-serif;  
+	width:var(--pie_chart_diameter);height:var(--pie_chart_diameter);
+	aspect-ratio:1;
+	position:relative;
+	display:inline-grid;
+	margin:5px;
+	place-content:center;vertical-align: middle;
+	font: var(--pie_chart_font);
+	text-align: center;padding: var(--pie_chart_padding);
+}
+
+.pie_chart:before,
+.pie_chart:after
+{
+	content:"";
+	position:absolute;
+	border-radius:50%;
+}
+
+.pie_chart:before
+{
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+	inset: 0;
+	background: var(--pie_chart_color);
+	-webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--pie_chart_border)),#000 calc(100% - var(--pie_chart_border)));
+	mask:radial-gradient(farthest-side,#0000 calc(99% - var(--pie_chart_border)),#000 calc(100% - var(--pie_chart_border)));
+	filter: opacity(var(--pie_chart_color_dark));
+}
+
+.pie_chart:after
+{
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+	inset: 0;
+	background: conic-gradient(var(--pie_chart_color) calc(var(--pie_chart_percent)*1%),#0000 0);
+	-webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--pie_chart_border)),#000 calc(100% - var(--pie_chart_border)));
+	mask:radial-gradient(farthest-side,#0000 calc(99% - var(--pie_chart_border)),#000 calc(100% - var(--pie_chart_border)));
+}
+</style>
+
+<div class="pie_chart"  style="--pie_chart_percent:60;"> 45 из 126 матаджи с детьми</div>
+<div class="pie_chart"  style="--pie_chart_percent:34;"> 45 из 126<br> эконом для прабху</div>
+<div class="pie_chart"  style="--pie_chart_percent:90;"> 45 из 126</div>
+<div class="pie_chart"  style="--pie_chart_percent:60;"> 45 из 126</div>
+<div class="pie_chart"  style="--pie_chart_percent:34;"> 45 из 126</div>
+<div class="pie_chart"  style="--pie_chart_percent:90;"> 45 из 126</div>
+<div class="pie_chart"  style="--pie_chart_percent:60;"> 45 из 126</div>
+<div class="pie_chart"  style="--pie_chart_percent:34;"> 45 из 126</div>
+
+	</body>
+</html>
