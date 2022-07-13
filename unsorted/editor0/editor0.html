@@ -1,0 +1,41 @@
+<!--
+based on Create a WYSIWYG Editor in Javascript by
+
+packetcode https://www.youtube.com/c/Packetcode
+
+https://www.youtube.com/watch?v=JxdBzejlMyY
+-->
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv="cache-control" content="no-cache" />
+<title>WYSIWYG Editor</title>
+<style>
+	form.editor_form textarea { display:none;}
+	form.editor_form iframe { width:500px; height:150px}
+	form.editor input.field {  display:block;  }
+</style>
+<script src="js.js"></script>
+</head>
+<body onload="iframe()">
+	
+	<h2> WYSIWYG Editor</h2>
+	<p>
+		<form method="post" action="submit.php" class=editor_form id="rtf">
+			<input type="button" value="B" onclick="bold()">
+			<input type="button" value="I" onclick="italic()">
+			<input type="button" value="U" onclick="underline()">
+			<input type="button" value="Size" onclick="fontsize()">
+			<input type="button" value="Color" onclick="fontcolor()">
+			<input type="button" value="Highlight" onclick="highlight()">
+			<input type="button" value="Link" onclick="link()">
+			<input type="button" value="Unlink" onclick="unlink()">
+			<textarea name="textarea" id="textarea"></textarea>
+			<iframe name="editor" id="editor"></iframe>
+			<div class="field"><input type="button" onclick="formsubmit()" value="post" class="editor_submit"></div>
+		</form>
+	</p>
+
+</body>
+</html>

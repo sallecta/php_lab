@@ -1,0 +1,143 @@
+<!actctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>blah</title>
+
+<link rel="stylesheet" href="Mark_Caron.css">
+
+</head>
+<body>
+	
+<div class='tabs30'>
+	<!-- navigation -->
+	<div>Tab 1</div>
+	
+	<div class='nav'>Tab 2</div>
+	
+	<div class='nav_selected'>Tab 3</div>
+	<!-- pages -->
+	<div>
+		<p>section 1</p>
+	</div>
+	
+	<div class='page'>
+		<p>section 2</p>
+	</div>
+	
+	<div class='page'>
+		<p>section 3</p>
+	</div>
+
+<script>
+
+class tabs30
+{
+	static dev = false;
+	static loaded = false;
+	static containers = null;
+	static page_first_key = -1;
+	static selected_key = -1;
+	static containers_length = 0;
+	static cl(arg_msg) { if (!this.dev) { return; } var me = this.name; console.log(me+': '+arg_msg); }
+	static even ( arg_num )
+	{
+		if(arg_num % 2 == 0) { return true; } else { return false; }
+	}
+	static str_find ( arg_str )
+	{
+		//if(arg_num % 2 == 0) { return true; } else { return false; }
+	}
+	static classes ( arg_operation, arg_classes, arg_el )
+	{
+		var classes = arg_el.className;
+		if(arg_operation == '+add')
+		{
+			 if ( classes ) {arg_el.className=arg_classes+' '+classes;} else { arg_el.className=arg_classes; }
+			 return;
+		}
+		if(arg_operation == 'add+')
+		{
+			 if ( classes ) {arg_el.className=classes+' '+arg_classes;} else { arg_el.className=arg_classes; }
+			 return;
+		}
+		if(arg_operation == 'rewrite')
+		{
+			 arg_el.className=arg_classes;
+			 return;
+		}
+	}
+	static act( arg_cmd = null )
+	{
+		if ( this.loaded ) 
+		{ 
+			if (arg_cmd) { this.do_cmd( arg_cmd ); return; }
+			else { return; } 
+		}
+		this.loaded = true;
+		this.containers=document.getElementsByClassName(this.name);
+		this.containers_length = this.containers.length;
+		for (var i=0; i<this.containers_length; i++)
+		{ 
+			this.do_container( this.containers[i] );
+		}
+	}
+	static do_container( arg_container )
+	{
+		var container_children = arg_container.getElementsByTagName('div');
+		var container_children_len = container_children.length;
+		if ( !this.even(container_children_len) ) { this.cl( 'wrong sub elements quantity: '+container_children_len+'. returning' ); return }
+		this.page_first_key = (container_children_len / 2);
+		for (var i=0; i< this.page_first_key; i++)
+		{ 
+			var current_el = container_children[i];
+			if ( current_el.className == 'nav_selected' ) { this.selected_key = i; this.cl('this.selected_key: '+this.selected_key)}
+			current_el.setAttribute("onclick", this.name+".act('select',true)" );
+		}
+		if ( this.selected_key == -1) { this.selected_key = 0; container_children[this.selected_key].className = 'nav_selected'; }
+		var ii=0;
+		for (var i=this.page_first_key; i< container_children_len; i++)
+		{ 
+			var current_el = container_children[i];
+			if ( ii == this.selected_key ) { current_el.className = 'page_selected'}
+			container_children[i].setAttribute("onclick", this.name+".act('select',true)" );
+			ii=ii+1;
+		}
+	}
+	static do_cmd( arg_cmd )
+	{
+		if ( arg_cmd == 'select' ) { this.select(); }
+	}
+	static select ()
+	{
+		this.cl('page_first_key: '+this.page_first_key+'; selected key: '+this.selected_key);
+		var el = event.target;
+		if ( el.className != 'nav_selected' ) 
+		{
+			var parent = el.parentElement;
+			var nav_els = parent.getElementsByClassName('nav_selected');
+			for (var i=0; i< nav_els.length; i++)
+			{ 
+				var nav_el = nav_els[i];
+				nav_els[i].className='nav';
+			}
+			el.className = 'nav_selected';
+			nav_els = parent.getElementsByClassName('page_selected');
+			for (var i=0; i< nav_els.length; i++)
+			{ 
+				var nav_el = nav_els[i];
+				nav_els[i].className='page';
+			}
+			parent.getElementsByClassName('page')[]
+		}
+	}
+}
+tabs30.dev=true;
+tabs30.act();
+
+</script>	
+</div> <!-- end tabs30 -->
+
+
+</body>
+</html>

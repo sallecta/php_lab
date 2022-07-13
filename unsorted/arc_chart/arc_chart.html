@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>css_gradient</title>
+</head>
+<body>
+	
+<!--
+app>arc_chart>start	
+-->
+
+<!--
+Based on 
+Quick pure CSS counter by Ana Tudor
+https://codepen.io/thebabydino/pen/RwPNaEd
+https://codepen.io/thebabydino
+
+https://webgradients.com/
+Amazing CSS gradients collection
+-->
+
+
+<style>
+	
+body { background:#b9b9b9; }
+
+.arc_chart_el
+{
+	--app_size:			200px; /* var(--app_size) */
+	--app_percent:		80; /* var(--app_percent) */
+ }
+
+.arc_chart_el
+{	
+	 /* var(--emm) */
+	 
+	--app_diam_factor:		0.97;
+	--app_thick_factor:		0.7; 
+	
+	--app_back_diam:	var(--app_size); 
+	--app_arc_diam:	calc( var(--app_back_diam) * var(--app_diam_factor) ); 
+	
+	--app_back_thick_factor:	0.1;
+	--app_arc_thick_factor:		0.0722;
+	
+	--app_back_thick:	calc( var(--app_back_diam) * var(--app_back_thick_factor) );
+	--app_arc_thick:	calc( var(--app_arc_diam) * var(--app_arc_thick_factor) ); 
+	
+	--app_arc_offset:	calc( (var(--app_back_thick) - var(--app_arc_thick)) / 2 ); /* var(--app_arc_offset) */
+	
+	--app_padding		calc( (var(--app_back_thick) - var(--app_arc_thick))*2 )
+	--app_margin:		5px; /* var(--app_margin) */
+	
+	--app_back_color:	white;/* var(--app_back_color) */
+	--app_arc_color:		#fd8f02; /* var(--app_arc_color) */
+	--app_arc_color_dark:	#ffcf9c;/* var(--app_arc_color_dark) */
+	--app_font_size:		calc( var(--app_size) / 12) sans-serif;   /* var(--app_font_size) */
+}
+.arc_chart_el:before
+{
+	display:grid;
+	position:absolute;
+	width:var(--app_back_diam);height:var(--app_back_diam);
+	aspect-ratio:1;
+	place-content:center;vertical-align: middle;
+	font: var(--app_font_size);
+	text-align: center;padding: var(--app_padding); 
+	border-radius:50%;
+	content:"";
+	background: radial-gradient(farthest-side, #fff0 calc(99% - var(--app_back_thick)), var(--app_back_color) calc(100% - var(--app_back_thick)) );
+	mask-image: radial-gradient(farthest-side, #fff0 calc(99% - var(--app_back_thick)), var(--app_back_color) calc(100% - var(--app_back_thick)) );
+}
+.arc_chart_el
+{
+	width:var(--app_back_diam);height:var(--app_back_diam);
+	aspect-ratio:1;
+	position:relative;
+	display:inline-grid;
+	margin:var(--app_margin);
+	place-content:center;vertical-align: middle;
+	font: var(--app_font_size);
+	border-radius:50%;
+	text-align: center;padding: var(--app_padding); 
+	background-image: linear-gradient(to top, #fddb927d 0%, #d1fdff45 100%);
+}
+.arc_chart_el:after
+{
+	display:inline-grid;
+	position:absolute;
+	top:var(--app_arc_offset);
+	left:var(--app_arc_offset);;
+	width:var(--app_arc_diam);height:var(--app_arc_diam);
+	aspect-ratio:1;
+	place-content:center;vertical-align: middle;
+	font: var(--app_font_size);
+	text-align: center;padding: var(--app_padding); 
+	border-radius:50%;
+	content:"";
+	background: conic-gradient(var(--app_arc_color) calc(var(--app_percent)*1%),var(--app_arc_color_dark) 0);
+	mask-image: radial-gradient(farthest-side, #fff0 calc(99% - var(--app_arc_thick)), var(--app_arc_color) calc(100% - var(--app_arc_thick)) );
+}
+
+
+
+</style>
+
+
+  
+<div class="arc_chart_el">arc_chart<br>example<br>60%</div>  
+<div class="arc_chart_el">arc_chart<br>example<br>60%</div>
+<div class="arc_chart_el ">arc_chart<br>example<br>60%</div>
+
+
+
+
+<!--
+app>arc_chart>end
+-->
+
+</body>
+</html>

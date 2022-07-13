@@ -1,0 +1,122 @@
+/*
+Pure CSS Tabs
+Mark Caron 
+https://codepen.io/markcaron/pen/MvGRYV
+https://codepen.io/markcaron
+
+CSS for the main interaction
+*/
+.tabset 
+{
+	--tabset_back: #e7e7e7;
+	--tabset_front_hover: #0c08a6;
+}
+.tabset > input[type="radio"] {
+  position: absolute;
+  left: -200vw;
+}
+
+.tabset .tab-panel {
+  display: none;
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+  display: block;
+}
+
+/*
+ Styling
+*/
+
+.tabset > label {
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 25px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: 600;background: #FFFFFF;
+background: linear-gradient(to top, #FFFFFF 0%, #EDEDED 49%);
+color:#b7b7b7;
+
+
+
+}
+
+.tabset > label::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 70%;
+  height: 4px;
+  background: #cecece;color:#cecece;
+}
+
+.tabset > label:hover,
+.tabset > input:focus + label {
+  color: var(--tabset_front_hover);
+}
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+  background: var(--tabset_front_hover);
+}
+
+.tabset > input:checked + label {
+  border-color: #ccc;
+  border-bottom: none;border-right: none;
+  margin-bottom: -1px;
+color:black;
+/* Created with https://www.css-gradient.com */
+	background: #FFFFFF;
+	background: -webkit-linear-gradient(top, #FFFFFF, #E7E7E7);
+	background: -moz-linear-gradient(top, #FFFFFF, #E7E7E7);
+	background: linear-gradient(to bottom, #FFFFFF, #E7E7E7);
+}
+
+.tab-panel {
+	padding: 20px;
+	border-top: none;border-left: 1px solid #ccc;
+	background:var(--tabset_back);
+min-height:200px;
+}
+
+/*
+ additional
+*/
+
+div.tabset > div.tab-panels > section > form
+{
+	border: 1px solid #cecece; border-radius:5px;
+	margin-bottom:20px;padding:10px;
+	background: rgb(206,255,217);
+	background: radial-gradient(circle, rgba(206,255,217,1) 0%, rgba(214,255,238,1) 100%); 
+}
+
+div.tabset > div.tab-panels > section > form.warning_pay
+{
+	background: rgb(255,192,193);
+	background: radial-gradient(circle, rgba(255,192,193,1) 0%, rgba(255,206,206,1) 72%, rgba(255,211,211,1) 100%); 
+}
+
+div.tabset > div.tab-panels > section > form.warning_pay:nth-of-type(2n)
+{
+	background: rgb(252,240,240);
+	background: radial-gradient(circle, rgba(252,240,240,1) 0%, rgba(255,212,212,1) 100%); 
+}
+div.tabset > div.tab-panels > section > :nth-child(2n)
+{
+	background: rgb(179,249,195);
+	background: radial-gradient(circle, rgba(179,249,195,1) 0%, rgba(178,255,224,1) 100%); 
+}
+div.tabset > div.tab-panels > section > form > button
+{
+	padding:10px; width:100%;
+}

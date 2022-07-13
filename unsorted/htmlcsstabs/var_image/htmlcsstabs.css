@@ -1,0 +1,119 @@
+/*
+CodePen Home
+Responsive CSS Tabs
+Schalk Joubert 
+https://codepen.io/schalkjoubert
+https://codepen.io/schalkjoubert/pen/MeLZYe
+*/
+
+body {
+  font: 14px/1 'Open Sans', sans-serif;
+  color: black;
+  background: #c6c6c6;
+}
+
+div.apptabs
+{
+	--tab_height:50px; /* var(--tab_height) */
+	--tab_line_top_color:#ffa90b; /* var(--tab_line_top_color) */
+	--tab_line_top_weight:2px; /* var(--tab_line_top_weight) */
+	--tab_line_color:#849b7da3; /* var(--tab_line_color) */
+	--tab_line_weight:1px; /* var(--tab_line_weight) */
+	--tab_enabled_color_front:#bb8846; /* var(--tab_enabled_color_front) */
+	--tab_enabled_color_back:#d9f4d1; /* var(--tab_enabled_color_back) */
+	--tab_disabled_color_front: #81937c; /* var(--tab_disabled_color_front) */
+	--tab_disabled_color_back: #d9f4d15c; /* var(--tab_disabled_color_back) */
+	--tab_hover_color_front:#50734591; /* var(--tab_hover_color_front) */
+	--tab_hover_color_back:#d9f4d15c; /* var(--tab_hover_color_back) */
+	/* calculated vars */
+	--tab_line_weight_negative: calc( 0px - var(--tab_line_weight) );
+	--tab_disabled_padding_vert:calc( (var(--tab_height) / 2) - var(--tab_line_weight) ); /* var(--tab_disabled_padding_vert) */
+	--tab_enabled_padding_vert:var(--tab_disabled_padding_vert); /* var(--tab_enabled_padding_vert) */
+}
+
+div.apptabs
+{
+	min-width: 320px;
+	max-width: 800px;
+	padding: 0;
+	margin: 0 auto;
+	font-weight: 400;
+	text-align: center;
+}
+
+div.apptabs section {
+  display: none;
+  padding: 10px;
+  border-top: var(--tab_line_weight) solid var(--tab_line_color);border-radius: 7px 7px 0px 0px;
+  min-height:200px;
+  text-align:left;
+}
+
+div.apptabs input {
+  display: none;
+}
+
+div.apptabs label
+{
+	display: inline-block;
+	margin: 0 0 var(--tab_line_weight_negative);
+	padding: var(--tab_disabled_padding_vert) 25px var(--tab_disabled_padding_vert) 25px;/* top | right | bottom | left */
+	font-weight: 600;
+	text-align: center;
+	color: var(--tab_disabled_color_front);
+	background: var(--tab_disabled_color_back);
+	border: 1px solid transparent;border-radius: 7px 7px 0px 0px;
+	line-height:0;
+}
+
+div.apptabs label:before
+{
+	content: ''; display:inline; 
+	background: no-repeat; background-position:left center;
+	width:0px;height:0px;padding:10px;margin:0px; line-height:0px; margin-right:5px;
+}
+div.apptabs label[for*='1']:before { background-image: var(--img_codepen, none); }
+div.apptabs label[for*='2']:before { background-image: var(--img_dribbble, none); }
+div.apptabs label[for*='3']:before { background-image: var(--img_dropbox, none); }
+div.apptabs label[for*='4']:before { background-image: var(--img_drupal, none); }
+
+div.apptabs label:hover {
+  color: var(--tab_hover_color_front);
+  background-color: var(--tab_hover_color_back);
+  cursor: pointer;
+}
+
+div.apptabs input:checked + label {
+  color: var(--tab_enabled_color_front);
+  border: var(--tab_line_weight) solid var(--tab_line_color);
+  border-top: var(--tab_line_top_weight) solid var(--tab_line_top_color);
+  border-bottom: var(--tab_line_weight) solid var(--tab_enabled_color_back);
+  background-color:var(--tab_enabled_color_back);
+  padding: var(--tab_enabled_padding_vert) 25px var(--tab_enabled_padding_vert) 25px;/* top | right | bottom | left */
+}
+
+div.apptabs #tab1:checked ~ #content1,
+div.apptabs #tab2:checked ~ #content2,
+div.apptabs #tab3:checked ~ #content3,
+div.apptabs #tab4:checked ~ #content4
+{
+	display: block;
+	background-color: var(--tab_enabled_color_back);
+}
+
+@media screen and (max-width: 650px) {
+  div.apptabs label {
+    font-size: 0;
+  }
+  div.apptabs label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  div.apptabs label {
+    padding: 15px;
+  }
+}
+
