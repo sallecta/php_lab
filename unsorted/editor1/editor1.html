@@ -1,0 +1,66 @@
+<!--
+Based on
+Creating a Rich Text Editor WYSIWYG Using HTML and JavaScript
+https://www.youtube.com/watch?v=S4K_PoWTCz4&list=PLlteSZ-rXPqvGkjdRmkN5O8wbbbdz0pKO
+By
+XcriptMonster
+https://www.youtube.com/channel/UC6AvuaUzPk2RgKm3Oql2zpg
+-->
+
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Rich Text Editor</title>
+<style>
+	div#editor{ margin: 0 auto; width:500px; height:200px; }
+	div#editor div#rt_area #edit_frame { border: 0px;}
+	div#editor div#toolbar { border-bottom:none; padding:10px; background-color:rgb(40,110,89); color:white; border-radius: 8px 8px 0px 0px;}
+	div#editor div#rt_area{ border:2px solid rgb(40,110,89); height:100%;width:496px; }
+	div#editor div#rt_area iframe#edit_frame{heiht:100%; width:100%;}
+	div#editor div#toolbar button#btn_bold { font-weight: bold;}
+	div#editor div#toolbar > button { color:white; border: none; outline:none; background-color:transparent; cursor:pointer;}
+	div#editor div#toolbar > button:hover { background-color:rgb(20,90,70); transition: all 0.1s linear 0s;}
+	div#editor div#toolbar button#btn_italic { font-style: italic;}
+	div#editor div#toolbar input[type="color"] { border:none; outline:none; background-color:transparent;}
+</style>
+</head>
+<body>
+
+
+<div id="editor">
+	<div id="toolbar">
+		<button id="btn_bold" title="Bold">B</button>
+		<button id="btn_italic" title="Italic">I</button>
+		<button id="btn_sup" title="Superscript">X<sup>2</sup></button>
+		<button id="btn_sub" title="Subscript">X<sub>2</sub></button>
+		<button id="btn_strike" title="Striketrough"><s>abc</s></button>
+		<button id="btn_ol" title="Ordered list">(i)</button>
+		<button id="btn_ul" title="Unordered list">&bull;</button>
+		<input type="color" id=="btn_font_color" title="Change font color">
+		<input type="color" id=="btn_highlight" title="Highlight text">
+		<select id=="btn_font">
+			<option value="Times New Roman">Times New Roman</option>
+			<option value="Consolas">Consolas</option>
+			<option value="Tahoma">Tahoma</option>
+			<option value="monospace">monospace</option>
+			<option value="cursive">cursive</option>
+			<option value="sans-serif">sans-serif</option>
+			<option value="Calibri">Calibri</option>
+		</select>
+	</div>
+	<div id="rt_area">
+		<iframe id="edit_frame" name="edit_frame"></iframe>
+	</div>
+	<script>
+		var fonts=document.querySelectorAll(select#btn_font > option);
+		for ()
+		{
+			
+		}
+	</script>
+</div>
+
+
+</body>
+</html>
