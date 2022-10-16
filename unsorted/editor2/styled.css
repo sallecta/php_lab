@@ -1,0 +1,34 @@
+div.editor
+{
+	position:relative;display:block; width:500px;
+	border:1px dotted gray; padding: 10px;
+	background-color: #e5e5f7;
+	background: rgb(223,222,238);
+}
+form.editor_form textarea { display:none;}
+form.editor_form iframe { width:500px; height:150px}
+form.editor input.field {  display:block;  }
+
+div.styled
+{
+	--edit_area_w:			200px; /* var(--edit_area_w) */
+	--edit_area_h:			200px; /* var(--edit_area_h) */
+}
+div.styled
+{
+	display:flex;
+}
+div.styled div.raw form div.control textarea.code
+{
+	background:LightGray;border:3px dotted red;
+	width: var(--edit_area_w); height:var(--edit_area_h);
+}
+div.styled div.raw form div.control input[type='submit']
+{
+	background:yellow;
+}
+div.styled div.preview
+{
+	background:LemonChiffon;
+	display:block;width: var(--edit_area_w); height:var(--edit_area_h);border:3px dotted gray;
+}
